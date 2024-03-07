@@ -1,0 +1,23 @@
+{
+  "name": "signal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/signal/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/signal",
+        "main": "packages/signal/src/index.ts",
+        "tsConfig": "packages/signal/tsconfig.lib.json",
+        "assets": ["packages/signal/*.md"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs signal {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}
